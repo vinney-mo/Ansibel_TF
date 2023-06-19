@@ -9,11 +9,11 @@
         state: present
         force_init: true
 
-    - name: Wait for the server to complete initializing
+    - name: Wait for the server to complete initializing before proceeding
       pause:
         minutes: 5
 
-- name: Reload host file
+- name: Reload host file # Ansible reload the host file to get the newly created host
   hosts: localhost
   tasks:
     - name: Reload host file
