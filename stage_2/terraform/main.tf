@@ -1,12 +1,12 @@
 resource "aws_key_pair" "key_pair" {
-  key_name   = "host-1-key"
+  key_name   = "host-1-key_pair"
   public_key = var.public_key  # Update the key in the .tfvars file
 }
 
 # Create security group
 # Refactor to have a these match your configurations on aws
-resource "aws_security_group" "web_sg" {
-  name        = "web_sg"
+resource "aws_security_group" "aws_web_sg" {
+  name        = "aws_web_sg"
   description = "Security group for access"
 
   ingress {
@@ -52,10 +52,10 @@ resource "aws_instance" "the_instance" {
 
   key_name      = aws_key_pair.key_pair.key_name
 
-  vpc_security_group_ids = [aws_security_group.web_sg.name] #you can replace with an already created security group on aws
+  vpc_security_group_ids = [aws_security_group.aws_web_sg.name] #you can replace with an already created security group on aws
 
   tags = {
-    Name = "Ansible-Host-3"
+    Name = "Ansible-Host-1"
   }
 
   #Adds the newly created host to the list of hosts on the control node
